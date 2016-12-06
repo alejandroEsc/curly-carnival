@@ -13,7 +13,7 @@ usage:
 from curly_carnival.node import Node
 a = Node('node_a', 3)
 b = Node('node_b', 5)
-b.insertAfter(a)
+b.insert_after(a)
 ```
 
 ## Installation
