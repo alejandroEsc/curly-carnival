@@ -36,13 +36,13 @@ class Node(object):
         # Walk the tree backwards than forward to ensure self name is unique
         if left is not None:
             inspect = left
-            while inspect.left is not None:
+            while inspect is not None:
                 if inspect.name == self.name:
                     return False
                 inspect = inspect.left
         if right is not None:
             inspect = right
-            while inspect.right is not None:
+            while inspect is not None:
                 if inspect.name == self.name:
                     return False
                 inspect = inspect.right
@@ -67,7 +67,10 @@ class Node(object):
         if right is not None:
             right.left = self
 
+        return True
+
 if __name__ == "__main__":
     node_a = Node('node_a', 3)
     node_b = Node('node_b', 5)
     node_b.insert_after(node_a)
+    print("Success")
