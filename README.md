@@ -16,7 +16,12 @@ b = Node('node_b', 5)
 b.insertAfter(a)
 ```
 
-installation:
+## Installation
 ```bash
 pip install git+https://github.com/joejulian/curly-carnival.git
+```
+
+## Testing
+```bash
+python setup.py test
 ```
