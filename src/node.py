@@ -68,6 +68,27 @@ class Node(object):
             right.left = self
 
         return True
+    
+    def insert_before(self, right):
+        '''
+        Insert self node into a tree of Nodes
+
+        left: Insert self node after self passed Node
+
+        '''
+        assert isinstance(right, Node), "left is not an integer: {0}".format(left)
+        left = right.left
+        assert left is None or left.weight < self.weight, "Cannot insert. This Node's weight {0} must be greather than {1}".format(self.weight, left.weight)
+        assert right is None or right.weight > self.weight, "Cannot insert. This Node's weight {0} must be less than {1}".format(self.weight, right.weight)
+        assert self._test_unique_name(left, right) is True, "Name, {0} is not unique to self tree. Node cannot be inserted".format(self.name)
+
+        # insert self node into the tree
+        self.left = left
+        self.right = right
+        if left is not None:
+            left.right = self
+
+        return True
 
 if __name__ == "__main__":
     node_a = Node('node_a', 3)
