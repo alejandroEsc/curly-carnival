@@ -43,6 +43,11 @@ node_a node_b node_c
 ```
 
 ## Installation
+
+### Requirements
+python 2.7 or python 3.5
+
+### Instructions
 ```bash
 pip install git+https://github.com/joejulian/curly-carnival.git
 ```
