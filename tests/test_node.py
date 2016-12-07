@@ -28,6 +28,8 @@ class TestNode:
         a = Node('node_a', 3)
         b = Node('node_b', 5)
         assert b.insert_after(a) is True
+        assert b.left is a
+        assert a.right is b
 
     def test_insert_before(self):
         # Test wrong order insertion

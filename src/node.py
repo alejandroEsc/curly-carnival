@@ -27,6 +27,24 @@ class Node(object):
         self.name = name
         self.weight = weight
 
+    def __repr__(self):
+        '''
+        friendly display string
+        '''
+        result = ''
+        if self.left is not None:
+            result += 'Node("{0}")-'.format(self.left.name)
+        result += 'Node("{0}", {1})'.format(self.name, self.weight)
+        if self.right is not None:
+            result += '-Node("{0}")'.format(self.right.name)
+        return '<{0}>'.format(result)
+
+    def dict(self):
+        '''
+        Return a dict of the Node attributes
+        '''
+        return {'name': self.name, 'weight': self.weight}
+
     def _test_unique_name(self, left, right):
         '''
         Test to see if self name is unique to the tree
@@ -64,11 +82,13 @@ class Node(object):
         # insert self node into the tree
         self.left = left
         self.right = right
+        if left is not None:
+            left.right = self
         if right is not None:
             right.left = self
 
         return True
-    
+
     def insert_before(self, right):
         '''
         Insert self node into a tree of Nodes
@@ -76,7 +96,7 @@ class Node(object):
         left: Insert self node after self passed Node
 
         '''
-        assert isinstance(right, Node), "left is not an integer: {0}".format(left)
+        assert isinstance(right, Node), "right is not an integer: {0}".format(right)
         left = right.left
         assert left is None or left.weight < self.weight, "Cannot insert. This Node's weight {0} must be greather than {1}".format(self.weight, left.weight)
         assert right is None or right.weight > self.weight, "Cannot insert. This Node's weight {0} must be less than {1}".format(self.weight, right.weight)
@@ -87,6 +107,8 @@ class Node(object):
         self.right = right
         if left is not None:
             left.right = self
+        if right is not None:
+            right.left = self
 
         return True
 

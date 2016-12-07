@@ -74,3 +74,28 @@ class Controller(object):
                 return node
             node = node.right
         return None
+
+    def dump(self, printout=False):
+        '''
+        dump the chain of Nodes as a list of dicts
+
+        printout(optional): print the nodes to stdout
+        '''
+        result = []
+
+        node = self.root
+        while node is not None:
+            result.append(node.dict())
+            if printout:
+                print('Node "{name}": {weight}'.format_map(node.dict()))
+            node = node.right
+        return result
+
+    def print_ordered_names(self, printout=True):
+        '''
+        print a space separated list of Nodes by order of weight to stdout
+        '''
+        result = ' '.join([x['name'] for x in self.dump()])
+        if printout:
+            print(result)
+        return result
